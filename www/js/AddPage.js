@@ -12,7 +12,15 @@ class AddPage {
             this.addContact();
         });
     }
-
+    /**
+     * Valide un numéro de téléphone.
+     * Accepte uniquement les chiffres, espaces, +, - et parenthèses.
+     * Doit contenir au minimum 8 chiffres.
+     */
+    isValidPhone(tel) {
+        const sanitized = tel.replace(/[\s\-().+]/g, '');
+        return /^\d{8,15}$/.test(sanitized);
+    }
     addContact() {
         let nom   = document.getElementById('addNom').value.trim();
         let tel   = document.getElementById('addTel').value.trim();
@@ -24,6 +32,10 @@ class AddPage {
             return;
         }
 
+        if (!this.isValidPhone(tel)) {
+            AppManager.showToast("Le numéro de téléphone est invalide. Utilisez uniquement des chiffres.", true);
+            return;
+        }
         let contact = navigator.contacts.create();
         contact.displayName = nom;
         contact.name = new ContactName(null, nom.split(' ')[1] || '', nom.split(' ')[0]);

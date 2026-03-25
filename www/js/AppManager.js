@@ -13,10 +13,13 @@ class AppManager {
     }
 
     onDeviceReady() {
-        this.homePage.init();
+        this.homePage.init(this.profilPage);
         this.profilPage.init(this.homePage);
         this.addPage.init(this.homePage);
         this.editPage.init(this.profilPage, this.homePage);
+
+        // Charger les contacts dès le lancement sans attendre pageshow
+        this.homePage.loadContacts();
     }
 
     // Affiche un toast jQuery Mobile

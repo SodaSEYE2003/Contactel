@@ -19,7 +19,15 @@ class EditPage {
             this.updateContact();
         });
     }
-
+    /**
+     * Valide un numéro de téléphone.
+     * Accepte uniquement les chiffres, espaces, +, - et parenthèses.
+     * Doit contenir au minimum 8 chiffres.
+     */
+    isValidPhone(tel) {
+        const sanitized = tel.replace(/[\s\-().+]/g, '');
+        return /^\d{8,15}$/.test(sanitized);
+    }
     fillForm() {
         let contact = this.profilPage.getCurrentContact();
         if (!contact) return;
@@ -43,7 +51,10 @@ class EditPage {
             AppManager.showToast("Le nom et le téléphone sont obligatoires.", true);
             return;
         }
-
+          if (!this.isValidPhone(tel)) {
+            AppManager.showToast("Le numéro de téléphone est invalide. Utilisez uniquement des chiffres.", true);
+            return;
+        }
         contact.displayName  = nom;
         contact.name         = new ContactName(null, nom.split(' ')[1] || '', nom.split(' ')[0]);
         contact.phoneNumbers = [new ContactField('mobile', tel, true)];
@@ -60,7 +71,6 @@ class EditPage {
         contact.save(
             () => {
                 this.profilPage.setCurrentContact(contact);
-                this.profilPage.render([contact]);
                 AppManager.showToast("Contact modifié avec succès !");
                 $.mobile.changePage('#profilPage', {
                     transition: 'slideup',
