@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <title>ContacTel</title>
+    <link rel="stylesheet" href="lib/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!-- Page d'accueil -->
+<div id="homePage" data-role="page">
+    <div data-role="header">
+        <h1>ContacTel</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <a href="#addPage" data-role="button" data-icon="plus"
+           data-iconpos="right" data-transition="slide">
+            Ajouter un contact
+        </a>
+        <ul id="contactList" data-role="listview" data-inset="true"
+            data-filter="true" data-filter-placeholder="Rechercher un contact">
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h4>M2GLS &copy; 2026</h4>
+    </div>
+</div>
+
+<!-- Page de profil -->
+<div id="profilPage" data-role="page">
+    <div data-role="header">
+        <a href="#homePage" data-icon="home" data-iconpos="notext"
+           data-transition="slide" data-direction="reverse">Retour</a>
+        <h1>ContacTel</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <div data-role="header">
+            <a href="#editPage" data-icon="edit" data-iconpos="notext"
+               data-transition="slideup">Modifier</a>
+            <h1>Profil</h1>
+            <a href="#" data-icon="delete" data-iconpos="notext"
+               id="btnDelete">Supprimer</a>
+        </div>
+        <ul id="profilDetail" data-role="listview" data-inset="true">
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h4>M2GLS &copy; 2026</h4>
+    </div>
+
+</div>
+
+<!-- Page d'ajout -->
+<div id="addPage" data-role="page">
+    <div data-role="header">
+        <a href="#homePage" data-icon="home" data-iconpos="notext"
+           data-transition="slide" data-direction="reverse">Accueil</a>
+        <h1>ContacTel</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <div data-role="header"><h1>Nouveau Contact</h1></div>
+
+        <label for="addNom">Nom complet</label>
+        <input type="text" id="addNom" placeholder="Samba Diaw" />
+
+        <label for="addTel">Téléphone</label>
+        <input type="tel" id="addTel" placeholder="78 123 45 67" />
+
+        <label for="addEmail">Email</label>
+        <input type="email" id="addEmail" placeholder="samba@gmail.com" />
+
+        <label for="addOrg">Organisation</label>
+        <input type="text" id="addOrg" placeholder="ESP" />
+
+        <a href="#" data-role="button" data-icon="check"
+           data-iconpos="right" id="btnAdd">
+            Enregistrer
+        </a>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h4>M2GLS &copy; 2026</h4>
+    </div>
+</div>
+
+<!-- Page de modification -->
+<div id="editPage" data-role="page">
+    <div data-role="header">
+        <a href="#profilPage" data-icon="back" data-iconpos="notext"
+           data-transition="slideup" data-direction="reverse">Retour</a>
+        <h1>ContacTel</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <div data-role="header"><h1>Modifier Contact</h1></div>
+
+        <label for="editNom">Nom complet</label>
+        <input type="text" id="editNom" placeholder="Nom complet" />
+
+        <label for="editTel">Téléphone</label>
+        <input type="tel" id="editTel" placeholder="Téléphone" />
+
+        <label for="editEmail">Email</label>
+        <input type="email" id="editEmail" placeholder="Email" />
+
+        <label for="editOrg">Organisation</label>
+        <input type="text" id="editOrg" placeholder="Organisation" />
+
+        <a href="#" data-role="button" data-icon="check"
+           data-iconpos="right" id="btnUpdate">
+            Enregistrer les modifications
+        </a>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h4>M2GLS &copy; 2026</h4>
+    </div>
+</div>
+
+    <!-- Popup de confirmation suppression -->
+<div data-role="popup" id="popupDelete" data-theme="a" data-overlay-theme="b"
+     data-dismissible="false" style="max-width:300px;">
+    <div data-role="header" data-theme="a">
+        <h1>Confirmation</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <p style="margin:1em 0;">Voulez-vous vraiment supprimer ce contact ?</p>
+        <a href="#" id="btnConfirmDelete" data-role="button"
+           data-theme="b" data-icon="delete" data-iconpos="left"
+           data-inline="true">
+            Supprimer
+        </a>
+        <a href="#" id="btnCancelDelete" data-role="button"
+           data-theme="a" data-icon="back" data-iconpos="left"
+           data-inline="true" data-rel="back">
+            Annuler
+        </a>
+    </div>
+</div>
+<!-- Toast message -->
+<div id="toast" style="display:none;"></div>
+
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery.mobile-1.4.5.min.js"></script>
+<script src="cordova.js"></script>
+<script src="js/HomePage.js"></script>
+<script src="js/ProfilPage.js"></script>
+<script src="js/AddPage.js"></script>
+<script src="js/EditPage.js"></script>
+<script src="js/AppManager.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>

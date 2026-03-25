@@ -1,0 +1,32 @@
+label {
+  align-items: center;
+}
+.completed {
+  text-decoration: line-through;
+}
+.ui-content div[data-role="header"] {
+  border-radius:5%;
+}
+.toast {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    min-width: 200px;
+    max-width: 80%;
+    pointer-events: none;
+}
+
+.toast-success {
+    background-color: #4CAF50;
+}
+
+.toast-error {
+    background-color: #e53935;
+}
